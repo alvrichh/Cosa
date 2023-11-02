@@ -4,9 +4,16 @@
 		<h1>Libros</h1>
 		<div th:replace="~{fragmentos :: nuevo_libro}"></div>
 		<div th:replace="~{fragmentos :: filtrar}"></div>
+		<!-- Realmente sería mejor seleccionar el idioma en el index y ya mantenerlo pero lo pongo aquí también -->
+		
 		<table>
 			<tr>
-				<td><b>Titulo</b></td><td><b>Autor</b></td><td><b>Categoria</b></td><td><b>Precio</b></td><td><b>Año de publicación</b></td>
+				<th th:text="#{message.titulo}"></th>
+  				<th th:text="#{message.autor}"></th>
+  				<th th:text="#{message.categoria}"></th>
+  				<th th:text="#{message.precio}"></th>
+  				<th th:text="#{message.anyo}"></th>
+
 					<tr th:each="libro : ${libros}">
                         <td th:text="${libro.nombre}"></td>
                         <td th:text="${libro.autor}"></td>

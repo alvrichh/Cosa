@@ -2,6 +2,16 @@
 	<head><title>Thymeleaf</title></head>
 	<body>
 		<h1><p th:text="${mensaje}">Texto por defecto</p></h1>
-		<a href="/libros">libros</a>
+		<h2><p th:text="#{message.title}">Texto por defecto</p></h2>
+		<button>
+			<a href="/?lang=en">Inglés</a>
+		</button>
+		<button>
+			<a href="/?lang=es">Español</a>
+		</button>
+		<p> 
+			<a href="/libros">Libros</a>
+		</p>
+		
 	</body>
 </html>

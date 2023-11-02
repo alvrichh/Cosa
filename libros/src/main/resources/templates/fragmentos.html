@@ -21,6 +21,6 @@
 <!-- Botón para agregar libro -->
 <div th:fragment="nuevo_libro">
     <form method="get" action="/formulario">
-        <button type="submit">Nuevo libro</button>
+        <button th:text="#{message.nuevo}" type="submit"></button>
     </form>
 </div>
