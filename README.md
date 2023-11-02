@@ -6,10 +6,10 @@ Este proyecto representa mi trabajo en una actividad de clase donde desarrollé 
 ### Pasos de Implementación:
 
 **1. Configuración del Entorno:**
-- Configuré mi entorno de desarrollo utilizando IntelliJ IDEA y aseguré que las dependencias necesarias para Spring Boot y Thymeleaf estuvieran en mi archivo `pom.xml`.
+- Configuré mi entorno de desarrollo utilizando Spring-Tool para eclipse y Thymeleaf.
 
 **2. Creación del Proyecto:**
-- Inicié un nuevo proyecto Spring Boot y definí la entidad "Libro" con atributos como título, autor y descripción.
+- Inicié un nuevo proyecto Spring Boot y definí la entidad "Libro" con atributos como título, autor etc...
 
 **3. Implementación de la Gestión de Libros:**
 - Desarrollé un controlador Spring MVC que maneja las operaciones CRUD para la lista de libros.
