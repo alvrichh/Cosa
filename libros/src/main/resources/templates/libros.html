@@ -1,0 +1,31 @@
+<html>
+	<head><title>Libros</title></head>
+	<body>
+		<h1>Libros</h1>
+		<div th:replace="~{fragmentos :: nuevo_libro}"></div>
+		<div th:replace="~{fragmentos :: filtrar}"></div>
+		<table>
+			<tr>
+				<td><b>Titulo</b></td><td><b>Autor</b></td><td><b>Categoria</b></td><td><b>Precio</b></td><td><b>Año de publicación</b></td>
+					<tr th:each="libro : ${libros}">
+                        <td th:text="${libro.nombre}"></td>
+                        <td th:text="${libro.autor}"></td>
+                        <td th:text="${libro.categoria}"></td>
+                        <td th:text="${libro.precio}"></td>
+                        <td th:text="${libro.anyoPublicacion}"></td>
+                    </tr>
+			</tr>
+		</table>
+		
+		<!-- Si el usuario no tiene libros favoritos o leídos, muestra un mensaje alentador -->
+		<div th:if="${libros.isEmpty()}">
+    		<p>No hay libros de esa categoria</p>
+		</div>
+
+
+		
+
+
+		
+	</body>
+</html>
