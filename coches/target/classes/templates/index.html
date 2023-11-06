@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<title th:text="#{titulo.coches}">Coches</title>
+	    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+
+</head>
+	<body>	
+		<div th:replace="~{fragmentos :: idioma}"></div>
+		<h1 th:text="${mensaje}">Texto por defecto</h1>
+		<h2 th:text="#{message.title}">Texto por defecto</h2>
+		<a href="/coches" th:text="#{titulo.coches}"></a>
+	</body>
+</html>

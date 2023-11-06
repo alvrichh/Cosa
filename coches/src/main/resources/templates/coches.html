@@ -1,0 +1,33 @@
+<html>
+	<head><title>Coches</title>
+	    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+</head>
+	<body>
+		<h1>Coches</h1>
+		<!-- desde esta vista se puede cambiar el idioma -->
+		<div th:replace="~{fragmentos :: idioma}"></div>
+		
+		<div th:replace="~{fragmentos :: nuevo_coche}"></div>
+		<div th:replace="~{fragmentos :: filtrar}"></div>
+		<table class="tabla" id="tabla">
+			<tr>
+				<th th:text="#{coche.marca}"></th>
+				<th th:text="#{coche.modelo}"></th>
+				<th th:text="#{coche.precio}"></th>
+				<th th:text="#{coche.anyo}"></th>
+				<th th:text="#{coche.fuenteEnergia}"></th>
+					<tr th:each="coche : ${coches}">
+						<td th:text="${coche.marca}"></td>
+						<td th:text="${coche.modelo}"></td>
+						<td th:text="${coche.precio}"></td>
+						<td th:text="${coche.ano}"></td>
+						<td th:text="${coche.fuenteEnergia}"></td>                       
+                    </tr>
+			</tr>
+		</table>
+		
+		<div th:if="${coches.isEmpty()}"> No hay coches de esos
+		</div>
+	
+	</body>
+</html>

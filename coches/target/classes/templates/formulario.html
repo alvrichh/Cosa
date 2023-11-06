@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head><title>Formulario</title>
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+	</head>
+	<body> 
+		<h2 th:text="#{boton.nuevo}"></h2>
+		<a href="/coches">volver </a>"
+		<div class="formulario">
+			<!-- Me di cuenta luego de 30 minuntos que no había puesto /nuevo_coche con corchetes y por eso no me funcionaba el form -->
+			<form th:action ="@{/nuevo_coche}" th:object="${coche}" method="post">
+				<p> 
+					<label for="marca" th:text="#{coche.marca}"> </label>
+					<input type="text" th:field="*{marca}">
+					<span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}" class="alert alert-danger">error</span>
+				</p>
+				<p>
+					<label for="modelo" th:text="#{coche.modelo}"> </label>
+					<input type="text" th:field="*{modelo}">
+					<span th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}" class="alert alert-danger">error</span>
+				</p>
+				<p>
+					<label for="precio" th:text="#{coche.precio}"> </label>
+					<input type="number" th:field="*{precio}">
+					<span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}" class="alert alert-danger">error</span>
+				</p>
+				<p>
+					<label for="ano" th:text="#{coche.anyo}"> </label>
+					<input type="number" th:field="*{ano}">
+					<span th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}" class="alert alert-danger">error</span>
+				</p>
+				<p>
+					<label for="fuenteEnergia" th:text="#{coche.fuenteEnergia}"> </label>
+					<select name="fuenteEnergia" id="fuenteEnergia" required> 
+            			<option value=""><span th:text="#{coche.fuenteEnergia}"> </span></option>
+           				<option th:each="tipo : ${fuenteEnergia}" th:value="${tipo}" th:text="${tipo}"> </option>
+        			</select>
+        					<span th:if="${#fields.hasErrors('fuenteEnergia')}" th:errors="*{fuenteEnergia}" class="alert alert-danger">error</span>
+
+				</p>
+				<p> 
+					<button type="submit" th:text="#{boton.nuevo}">boton </button>
+				</p>
+			</form>
+		</div>
+	</body>
+</html>
