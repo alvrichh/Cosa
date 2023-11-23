@@ -8,38 +8,33 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name="cuentas_usuario")
+@Table(name="cuenta_usuario")
 public class CuentaUsuario   {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name = "username")
+	@NotNull(message = "El usuario no puede estar vacío.")
 	private String username;
 	
 	@Column(name="password")
+	@NotNull(message = "La contraseña no puede estar vacía.")
 	private String password;
 	
 	@OneToOne
-	@JoinColumn(name = "empleado_id", referencedColumnName= "id")
+	@JoinColumn(name = "id", referencedColumnName= "id")
 	private Empleado empleado;
 
-	public CuentaUsuario(long id, String username, String password, Empleado empleado) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.empleado = empleado;
-	}
-
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -66,10 +61,6 @@ public class CuentaUsuario   {
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
 	}
-	
-	
-	
-	
 	
 	
 }

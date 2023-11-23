@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="empleados")
@@ -18,17 +19,11 @@ public class Empleado {
 	private Long id;
 	
 	@Column(name = "nombre")
+	@NotNull(message = "El nombre no puede estar vacío.")
 	private String nombre;
 	
 	@OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL)
 	private CuentaUsuario cuentaUsuario;
-
-	public Empleado(Long id, String nombre, CuentaUsuario cuentaUsuario) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.cuentaUsuario = cuentaUsuario;
-	}
 
 	public Long getId() {
 		return id;
