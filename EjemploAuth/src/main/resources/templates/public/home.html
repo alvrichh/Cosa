@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>TODO</title>
+</head>
+
+<body>
+	<div th:replace="~{fragments/header :: headerFragment}"></div>
+	<div class="ejercicios">
+		<h1>Ejercicio 1</h1>
+		<ul>
+			<li>Añade un usuario/contraseña test/test cuyo ROL sea USER</li>
+			<li>Añade un usuario/contraseña admin2/admin2 cuyo ROL sea ADMIN</li>
+		</ul>
+		<h1>Ejercicio 2</h1>
+		<ul>
+			<li>Crea un nuevo ROL y añadele un par de usuarios</li>
+		</ul>
+	</div>
+	<div th:replace="~{fragments/footer :: footerFragment}"></div>
+</body>
+
+</html>
