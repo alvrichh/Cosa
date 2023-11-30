@@ -1,0 +1,8 @@
+com/example/demo/entidad/Estudiante.class
+com/example/demo/controlador/EstudianteControlador.class
+com/example/demo/MuchosAMuchosApplication.class
+com/example/demo/repositorio/CursoRepositorio.class
+com/example/demo/conf/InicializarDatos.class
+com/example/demo/entidad/Curso.class
+com/example/demo/repositorio/EstudianteRepositorio.class
+com/example/demo/servicio/EstudianteServicio.class
