@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Página de usuario</title>
+</head>
+<body>
+       <h1>Bienvenido, <span th:text="${session.username}">Nombre de Usuario</span>!</h1>
+      <p>Esta página es solo para Usuario.</p>
+    <div th:replace="~{fragments/logout-fragment :: logout-link}"></div>
+    <div th:replace="~{fragments/footer :: footerFragment}"></div>
+    <h3>Escribe un comentario <span th:text="${session.username}"></span>:</h3>
+    <input type="text" placeholder="Ej: Me gustan los macarrones con tomate.">
+    </body>
+</html>

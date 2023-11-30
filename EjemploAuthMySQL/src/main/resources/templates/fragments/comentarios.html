@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Fragmento de Comentario</title>
+</head>
+
+<body>
+	<div th:fragment="comentarioFragment">
+		<div th:each="comentario : ${comentarios}">
+			<div class="comentario">
+				<table>
+					<tr>
+						<td><p th:text="${comentario.usuario.username}"></td><td><p th:text="${comentario.contenido}"></p></td>
+					</tr>
+				</table>
+				<div th:each="comentario : ${comentarios}">
+				</div>
+			</div>
+		</div>
+</body>
+
+</html>

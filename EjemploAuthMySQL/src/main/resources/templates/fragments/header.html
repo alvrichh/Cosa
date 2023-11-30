@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fragmento de Cabecera</title>
+</head>
+<body>
+    <header th:fragment="headerFragment">
+        <h1>Encabezado del Sitio</h1>
+        <nav>
+            <!-- Enlaces de navegación aquí -->
+            <a th:href="@{/}">Inicio</a>
+            <a th:href="@{/home}">Ver comentarios</a>
+            <a th:href="@{/login}">Iniciar Sesión</a>
+        </nav>
+    </header>
+</body>
+</html>

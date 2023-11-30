@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fragmento de Formulario de Inicio de Sesión</title>
+</head>
+<body>
+    <div th:fragment="loginFormFragment">
+        <div th:if="${isLoggedIn}">
+            <p>Ya has iniciado sesión.</p>
+            <div th:replace="~{fragments/logout-fragment :: logout-link}"></div>
+        </div>
+        <div th:unless="${isLoggedIn}">
+            <div th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            <form th:action="@{/login}" method="post">
+                <div>
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" name="username" required />
+                </div>
+                <div>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required />
+                </div>
+                <div>
+                    <button type="submit">Iniciar Sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
