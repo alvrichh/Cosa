@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Coche</title>
+</head>
+<body>
+    <h1>Formulario</h1>
+<form th:action="@{/coches/agregar}" th:object="${coche}" method="post">
+<!--    Necesito un input hidden para mantener los IDs-->
+    <input type="hidden" th:value="*{id}" name="id">
+    <div>
+        <label for="marca">Marca</label>
+        <input type="text" id="marca" th:field="*{marca}" />
+        <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
+    </div>
+
+    <div>
+        <label for="marca">Matricula</label>
+        <input type="text" id="matricula" th:field="*{matricula}" />
+        <span th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}"></span>
+    </div>
+
+    <div>
+        <label for="marca">Color</label>
+        <input type="text" id="color" th:field="*{color}" />
+        <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></span>
+    </div>
+    <div>
+        <button type="submit">Guardar</button>
+    </div>
+</form>
+</body>
+</html>

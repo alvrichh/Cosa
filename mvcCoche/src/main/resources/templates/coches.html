@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de coches</title>
+</head>
+<body>
+<!--    Listado-->
+    <h1>Coches</h1>
+    <table>
+        <tr>
+            <th>Marca</th>
+            <th>Matricula</th>
+            <th>Color</th>
+        </tr>
+        <tr th:each="c : ${coches}">
+            <td th:text="${c.marca}"></td>
+            <td th:text="${c.matricula}"></td>
+            <td th:text="${c.color}"></td>
+<!--            editar-->
+            <td><a th:href="@{/coches/editar/{id}(id=${c.id})}">Editar</a></td>
+<!--            eliminar-->
+            <td><a th:href="@{/coches/eliminar/{id}(id=${c.id})}">Eliminar</a></td>
+        </tr>
+    </table>
+<!--    Enlace Crear nuevo coche-->
+    <a th:href="@{/coches/nuevo}">Nuevo coche</a>
+
+</body>
+</html>
