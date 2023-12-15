@@ -6,18 +6,55 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<div th:replace="~{fragments/header :: headerFragment}"></div>
     <div class="container mt-4">
-        <h2>Bienvenido, MANAGER!</h2>
-        <p>Esta página es solo para manager.</p>
+        <h1>Bienvenido, <span th:text="${perfilUsuario.nombre}">Nombre de Usuario</span>!</h1>
+        <p>Esta página es solo para administradores.</p>
+
         <!-- Fragmento de cierre de sesión -->
         <div th:replace="~{fragments/logout-fragment :: logout-link}"></div>
+
+        <!-- Agregar botones para CRUD -->
+	   	<div class="mb-4">
+	    	<a th:href="@{/admin/crear}" class="btn btn-success">Crear Usuario</a>
+		</div>
+
+        <!-- Agregar tabla para mostrar la lista de usuarios -->
+        <h2>Lista de Usuarios</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Roles</th>
+                    <th>Acciones</th> <!-- Nueva columna para acciones -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterar sobre la página de usuarios -->
+                <tr th:each="usuario : ${pageUsuarios.content}">
+                    <td th:text="${usuario.id}"></td>
+                    <td th:text="${usuario.username}"></td>
+                    <td>
+                        <!-- Iterar sobre los roles del usuario -->
+                        <span th:each="rol : ${usuario.roles}" th:text="${rol} + ' '"></span>
+                    </td>
+                    <td>
+                        <!-- Agregar enlaces para acciones CRUD -->
+                        <a th:href="@{/admin/editar/{id}(id=${usuario.id})}" class="btn btn-warning">Editar</a>
+                        <a th:href="@{/admin/delete/{id}(id=${usuario.id})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    <div th:replace="~{fragments/footer :: footerFragment}"></div>
+
     </div>
 
     <!-- Opcional: Incluir JavaScript de Bootstrap y sus dependencias -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<div th:replace="~{fragments/footer :: footerFragment}"></div>
+
+    <!-- Incluir fragmento de pie de página -->
 </body>
 </html>

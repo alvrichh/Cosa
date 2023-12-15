@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Administrar Usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Determinar el título y la acción del formulario según si se está creando o editando -->
+        <h2 th:if="${usuario.id == null}">Crear Nuevo Usuario</h2>
+        <h2 th:if="${usuario.id != null}">Editar Usuario</h2>
+
+       <!-- Formulario de creación de Usuario y PerfilUsuario -->
+<form th:object="${usuario}" th:action="@{/admin/create}" method="post">
+    <!-- Campos del formulario de Usuario -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" th:field="*{username}" />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" th:field="*{password}" />
+
+    <!-- Puedes agregar más campos según tus necesidades -->
+
+    <!-- Campos del formulario de PerfilUsuario -->
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" th:field="*{perfilUsuario.nombre}" />
+
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="apellido" th:field="*{perfilUsuario.apellido}" />
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" th:field="*{perfilUsuario.email}" />
+
+    <!-- Puedes agregar más campos según tus necesidades -->
+
+    <!-- Botón de envío del formulario -->
+    <button type="submit">Crear Usuario</button>
+</form>
+
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

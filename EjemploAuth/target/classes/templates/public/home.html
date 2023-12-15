@@ -1,25 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<title>TODO</title>
+    <title>Comentarios</title>
+    <!-- Incluir Bootstrap CSS desde CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
-	<div th:replace="~{fragments/header :: headerFragment}"></div>
-	<div class="ejercicios">
-		<h1>Ejercicio 1</h1>
-		<ul>
-			<li>Añade un usuario/contraseña test/test cuyo ROL sea USER</li>
-			<li>Añade un usuario/contraseña admin2/admin2 cuyo ROL sea ADMIN</li>
-		</ul>
-		<h1>Ejercicio 2</h1>
-		<ul>
-			<li>Crea un nuevo ROL y añadele un par de usuarios</li>
-		</ul>
-	</div>
-	<div th:replace="~{fragments/footer :: footerFragment}"></div>
+
+    <div class="container mt-4">
+        <!-- Encabezado de la página -->
+        <header th:replace="~{fragments/header :: headerFragment}"></header>
+
+        <main role="main">
+            <!-- Contenido principal -->
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Comentarios</h2>
+                    <div th:replace="~{fragments/comentarios :: comentarioFragment}"></div>
+                </div>
+    
+            </div>
+        </main>
+
+        <!-- Pie de página -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+
+    </div>
+
+    <!-- Optional Bootstrap JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
