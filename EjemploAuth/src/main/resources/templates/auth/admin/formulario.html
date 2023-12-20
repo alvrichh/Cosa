@@ -11,18 +11,20 @@
         <h2 th:if="${usuario.id != null}">Editar Usuario</h2>
 
         <!-- Formulario de creación de Usuario y PerfilUsuario -->
-        <form th:object="${usuario}" th:action="@{/admin/guardar}" method="post" class="needs-validation" novalidate>
+        <form th:object="${usuario}" th:action="@{/admin/guardar}" method="post" class="needs-validation">
+			<!-- CAMPO OCULTO DEL ID  NO SE GUARDA, RETORNA ERRORES
+			<input type="hidden" name="id" value="*{perfilUsuario.id}" /> -->
             <!-- Campos del formulario de Usuario -->
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" th:field="*{username}" class="form-control" required/>
-                <div class="invalid-feedback">Por favor, ingresa un nombre de usuario.</div>
+        		<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">ey</span>
             </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" th:field="*{password}" class="form-control" required/>
-                <div class="invalid-feedback">Por favor, ingresa una contraseña.</div>
+                <input type="password" id="password" name="password" th:field="*{password}"  class="form-control" required/>
+        		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Contraseña error</span>
             </div>
 
             <!-- Campo de roles (Enum) -->
@@ -33,22 +35,28 @@
                     <option value="ROLE_ADMIN">ADMIN</option>
 					<option value="ROLE_MANAGER">MANAGER</option>
                 </select>
+                <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
             </div>
 
             <!-- Campos del formulario de PerfilUsuario -->
             <div class="form-group">
-                <label for="perfil.nombre">Nombre:</label>
-                <input type="text" id="nombre" name="perfilUsuario.nombre" th:field="*{perfilUsuario.nombre}" class="form-control" />
+                <label for="perfilUsuario.nombre">Nombre:</label> <!-- HE CAMBIADO EL NOMBRE perfilUsuario.nombre,  con todos para que traiga las relaciones -->
+                <input type="text" id="perfilUsuario.nombre" name="perfilUsuario.nombre" th:field="*{perfilUsuario.nombre}" class="form-control" />
+                <span th:if="${#fields.hasErrors('perfilUsuario.nombre')}" th:errors="*{perfilUsuario.nombre}">errores</span>
+
             </div>
 
             <div class="form-group">
-                <label for="perfil.apellido">Apellido:</label>
-                <input type="text" id="apellido" name="perfil.apellido" th:field="*{perfilUsuario.apellido}" class="form-control" />
+                <label for="perfilUsuario.apellido">Apellido:</label>
+                <input type="text" id="perfilUsuario.apellido" name="perfilUsuario.apellido" th:field="*{perfilUsuario.apellido}" class="form-control" />
+            	<span th:if="${#fields.hasErrors('perfilUsuario.apellido')}" th:errors="*{perfilUsuario.apellido}"></span>
             </div>
 
             <div class="form-group">
                 <label for="perfil.email">Email:</label>
                 <input type="text" id="email" name="perfil.email" th:field="*{perfilUsuario.email}" class="form-control" />
+				<span th:if="${#fields.hasErrors('perfilUsuario.email')}" th:errors="*{perfilUsuario.email}"></span>
+
             </div>
 
             <!-- Botón de envío del formulario -->

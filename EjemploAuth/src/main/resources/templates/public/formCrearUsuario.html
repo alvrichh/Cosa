@@ -20,7 +20,6 @@
                 <input type="text" id="username" name="username" th:field="*{username}" class="form-control" required/>
         		<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">ey</span>
             </div>
-
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" th:field="*{password}"  class="form-control" required/>
@@ -28,15 +27,15 @@
             </div>
 
             <!-- Campo de roles (Enum) -->
-            <div class="form-group">
-                <label for="roles">Roles:</label>
-                <select id="roles" name="roles" multiple="multiple" th:field="*{roles}" class="form-control">
-                    <option value="ROLE_USER">USER</option>
-                    <option value="ROLE_ADMIN">ADMIN</option>
-					<option value="ROLE_MANAGER">MANAGER</option>
-                </select>
-                <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
-            </div>
+            <div class="form-group" style="display: none;">
+    			<label for="roles">Roles:</label>
+    			<select id="roles" name="roles" multiple="multiple" th:field="*{roles}" class="form-control">
+        			<option value="ROLE_USER" selected>USER</option>
+			        <option value="ROLE_ADMIN">ADMIN</option>
+			        <option value="ROLE_MANAGER">MANAGER</option>
+			    </select>
+			    <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
+			</div>
 
             <!-- Campos del formulario de PerfilUsuario -->
             <div class="form-group">

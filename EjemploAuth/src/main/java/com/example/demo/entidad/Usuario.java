@@ -5,6 +5,7 @@ import java.util.Set;
 import com.example.demo.entidad.enumerado.RolUsuario;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
 
 @Table(name = "Usuarios")
@@ -27,7 +28,7 @@ public class Usuario {
     @CollectionTable(name="usuario_rol")
     @Column(name ="RolesUsuario")
     private Set<RolUsuario> roles = new HashSet<>();
-    
+    @Valid
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private PerfilUsuario perfilUsuario;
 

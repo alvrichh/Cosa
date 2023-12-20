@@ -3,6 +3,7 @@ package com.example.demo.entidad;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="Perfil_Usuario")
@@ -11,8 +12,10 @@ public class PerfilUsuario {
 	
 	@Id
 	@GeneratedValue
-	private Long Id;
+	private Long id;
+	@NotBlank(message = "{error.nombre}") // validamos que el campo no esté vacío
 	private String nombre;
+	@NotBlank(message = "{error.apellido}") // validamos que el campo no esté vacío
 	private String apellido;
 	@Email
 	private String email;
@@ -20,10 +23,10 @@ public class PerfilUsuario {
 	@JoinColumn(name="usuario_id", referencedColumnName = "id")
 	private Usuario usuario;
 	public Long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 	public String getNombre() {
 		return nombre;

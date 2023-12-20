@@ -2,14 +2,16 @@ package com.example.demo.controlador;
 
 import java.time.LocalDateTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,6 +39,10 @@ public class UserController {
 	ComentarioServicio comentariosServicio;
 	@Autowired
 	UsuarioServicio usuarioServicio;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 
 	private final String HOME = "auth/user/home";
 
@@ -89,12 +95,13 @@ public class UserController {
         comentarios = comentariosServicio.listarTodos(pageRequest);
         System.out.println("#COMENTARIOS TOTALES: " + comentarios);
     }
-   
-    
-    PerfilUsuario perfilUsuario = usuarioServicio.obtenerPorUsername(usernameAuth).getPerfilUsuario();
-    
-    model.addAttribute("perfilUsuario", perfilUsuario);
-        model.addAttribute("comentarios", comentarios);
+    // incluido try/catch
+    try {
+    	PerfilUsuario perfilUsuario = usuarioServicio.obtenerPorUsername(usernameAuth).getPerfilUsuario();
+	    model.addAttribute("perfilUsuario", perfilUsuario);
+    } catch (Exception e) {
+    }
+    model.addAttribute("comentarios", comentarios);
         model.addAttribute("requestURI", request.getRequestURI());
 
         return HOME; // Muestra la página específica del usuario (user.html)
@@ -143,7 +150,5 @@ public class UserController {
        comentariosServicio.guardar(comentario);
        return "redirect:/user/home";
    }
-    
-  
-	
+  	
 }

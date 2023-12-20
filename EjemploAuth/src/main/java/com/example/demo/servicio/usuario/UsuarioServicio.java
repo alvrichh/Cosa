@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.demo.dto.UsuarioDTO;
 
@@ -24,8 +25,18 @@ public class UsuarioServicio {
 	@Autowired
 	UsuarioRepository usuarioRepositorio;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	public Usuario guardar(Usuario usuario) {
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+
+		// Establecer la relación bidireccional
+		if (usuario.getPerfilUsuario() != null) {
+			usuario.getPerfilUsuario().setUsuario(usuario);
+		}
 		return usuarioRepositorio.save(usuario);
+
 	}
 
 	public Usuario obtenerPorId(Long id) {
@@ -38,6 +49,7 @@ public class UsuarioServicio {
 			return null;
 		}
 	}
+
 	@Transactional
 	public Usuario obtenerPorUsername(String username) {
 		return usuarioRepositorio.findByUsername(username).get();
@@ -58,12 +70,14 @@ public class UsuarioServicio {
 	public boolean existe(String username) {
 		return usuarioRepositorio.existsByUsername(username);
 	}
-    // Nuevo método para obtener todos los usuarios con paginación
-    public Page<Usuario> obtenerTodosLosUsuarios(int page, int size) {
-        return usuarioRepositorio.findAll(PageRequest.of(page, size));
-    }
-    // Nuevo método para eliminar un usuario por ID
-    public void eliminar(Long id) {
-        usuarioRepositorio.deleteById(id);
-    }
+
+	// Nuevo método para obtener todos los usuarios con paginación
+	public Page<Usuario> obtenerTodosLosUsuarios(int page, int size) {
+		return usuarioRepositorio.findAll(PageRequest.of(page, size));
+	}
+
+	// Nuevo método para eliminar un usuario por ID
+	public void eliminar(Long id) {
+		usuarioRepositorio.deleteById(id);
+	}
 }

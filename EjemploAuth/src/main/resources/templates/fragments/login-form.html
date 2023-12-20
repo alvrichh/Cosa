@@ -31,6 +31,10 @@
                     <button type="submit">Iniciar Sesión</button>
                 </div>
             </form>
+            <!-- Esto debe redirigir al formulario para crear usuario -->
+           <form th:action="@{/crear}" method="post">
+				<label for="register">¿No tienes cuenta? <a th:href="@{/crear}" type="submit">Regístrate</a>
+            </form>
         </div>
     </div>
 </body>

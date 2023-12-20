@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/admin")
@@ -65,10 +67,12 @@ public class AdminController {
 
     // Método para procesar el formulario de creación de usuario
     @PostMapping("/guardar")
-    public String processCreateForm(@ModelAttribute Usuario usuario) {
-    	
+    public String processCreateForm(Model model, @ModelAttribute("usuario") @Valid Usuario usuario, BindingResult result) {
     	String pass = usuario.getPassword();
     	usuario.setPassword(passwordEncoder.encode(pass));
+    	if (result.hasErrors()) {
+    		return "auth/admin/formulario";
+    	}
         usuarioServicio.guardar(usuario);
         
         return "redirect:/admin/home";
@@ -83,9 +87,8 @@ public class AdminController {
     
     // Método para eliminar un usuario
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    public String deleteUser(@PathVariable Long id, Model model) {
         usuarioServicio.eliminar(id);
-        redirectAttributes.addFlashAttribute("successMessage", "Usuario eliminado con éxito");
         return "redirect:/admin/home";
     }
 }
